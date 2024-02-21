@@ -19,9 +19,20 @@
                     <MenuItem mnemonicParsing="false" onAction="#showCreatePostScreen" text="Create Post" />
                 </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Add User">
+            <Menu mnemonicParsing="false" text="Users">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showViewUsersScreen" text="View Users" />
+                </items>
                 <items>
                     <MenuItem mnemonicParsing="false" onAction="#showAddUserScreen" text="Add User" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Topics">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showViewTopicsScreen" text="View Topics" />
+                </items>
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showAddTopicScreen" text="Add Topic" />
                 </items>
             </Menu>
         </menus>

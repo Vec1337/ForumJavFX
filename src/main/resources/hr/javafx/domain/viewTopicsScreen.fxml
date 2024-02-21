@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.domain.controllers.ForumScreenController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.domain.controllers.ViewTopicsScreenController">
     <children>
         <fx:include source="theMenu.fxml" />
         <GridPane prefHeight="612.0" prefWidth="800.0">
@@ -19,15 +20,19 @@
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="FORUM SCREEN" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Users" GridPane.columnSpan="2" GridPane.halignment="CENTER">
                     <font>
                         <Font name="Bodoni MT Black Italic" size="22.0" />
                     </font>
                 </Text>
-            <TextArea prefHeight="200.0" prefWidth="200.0" text="Lorem" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+                <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                    <columns>
+                        <TableColumn prefWidth="367.0" text="C1" />
+                        <TableColumn prefWidth="432.0" text="C2" />
+                    </columns>
+                </TableView>
             </children>
         </GridPane>
     </children>
