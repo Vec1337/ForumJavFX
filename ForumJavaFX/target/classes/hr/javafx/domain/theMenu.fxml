@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="30.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.domain.controllers.TheMenuController">
+    <MenuBar layoutX="7.0" layoutY="2.0" prefHeight="25.0" prefWidth="340.0">
+        <menus>
+            <Menu mnemonicParsing="false" text="Forum">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showForumScreen" text="Forum" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Create Post">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showCreatePostScreen" text="Create Post" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Users">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showViewUsersScreen" text="View Users" />
+                </items>
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showAddUserScreen" text="Add User" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Topics">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showViewTopicsScreen" text="View Topics" />
+                </items>
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showAddTopicScreen" text="Add Topic" />
+                </items>
+            </Menu>
+        </menus>
+        <padding>
+            <Insets left="5.0" right="5.0" />
+        </padding>
+    </MenuBar>
+
+</AnchorPane>
