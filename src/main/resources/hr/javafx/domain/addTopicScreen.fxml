@@ -31,27 +31,27 @@
                         <Font name="Bodoni MT Black Italic" size="22.0" />
                     </font>
                 </Text>
-                <TextField prefHeight="25.0" prefWidth="274.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <TextField fx:id="descriptionTextField" prefHeight="25.0" prefWidth="274.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <GridPane.margin>
                         <Insets left="10.0" right="20.0" />
                     </GridPane.margin>
                 </TextField>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <TextField fx:id="nameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets left="10.0" right="20.0" />
                     </GridPane.margin>
                 </TextField>
-                <Label text="Username:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                <Label text="Name:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets right="20.0" />
                     </GridPane.margin>
                 </Label>
-                <Label text="Password:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                <Label text="Description:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                     <GridPane.margin>
                         <Insets right="20.0" />
                     </GridPane.margin>
                 </Label>
-                <Button mnemonicParsing="false" text="Add User" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                <Button mnemonicParsing="false" onAction="#addTopic" text="Add Topic" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             </children>
         </GridPane>
     </children>

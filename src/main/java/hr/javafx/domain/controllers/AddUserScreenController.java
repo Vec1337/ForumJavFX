@@ -2,9 +2,13 @@ package hr.javafx.domain.controllers;
 
 import hr.javafx.domain.entities.User;
 import hr.javafx.domain.enums.UserRole;
+import hr.javafx.domain.utils.FileUtils;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+
+import java.util.List;
 
 public class AddUserScreenController {
 
@@ -21,6 +25,7 @@ public class AddUserScreenController {
     }
 
     public void addUser() {
+        Integer id = FileUtils.getNextUserId();
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
 
@@ -33,7 +38,35 @@ public class AddUserScreenController {
             role = UserRole.ADMIN;
         }
 
-        User newUser = new User(25, username, password, role);
+        User newUser = new User(id, username, password, role);
+
+        try {
+
+            if(username.isEmpty() || password.isEmpty()) {
+                throw new Exception();
+            }
+
+            List<User> userList = FileUtils.readUsersFromFile();
+            userList.add(newUser);
+            FileUtils.saveUsersToFile(userList);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Successfully added new user!");
+            alert.setHeaderText("New user added!");
+            alert.setContentText("User: " + username + " saved successfully.");
+
+            alert.showAndWait();
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error while adding new user!");
+            alert.setHeaderText("New user not added!");
+            alert.setContentText("ERROR");
+
+            alert.showAndWait();
+        }
+
+
 
 
     }

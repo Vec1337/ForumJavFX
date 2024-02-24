@@ -10,3 +10,7 @@ GUEST
 User3
 Pass3
 GUEST
+4
+User4
+Pass4
+ADMIN
