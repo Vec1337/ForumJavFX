@@ -16,6 +16,10 @@ public class ForumScreenController {
     private ListView<String> postsListView;
     @FXML
     private Text titleText;
+    @FXML
+    private Text topicText;
+    @FXML
+    private Text contentText;
 
     String currentPost;
 
@@ -33,7 +37,17 @@ public class ForumScreenController {
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 currentPost = postsListView.getSelectionModel().getSelectedItem();
 
+                Post post = null;
+                for(Post p : postList) {
+                    if(currentPost.contains(p.getTitle())) {
+                        post = p;
+                    }
+                }
+
                 titleText.setText(currentPost);
+                topicText.setText(post.getTopic().getName());
+                contentText.setText(post.getContent());
+
             }
         });
 

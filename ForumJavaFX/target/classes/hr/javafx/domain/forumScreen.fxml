@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -19,11 +20,12 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="255.0" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="301.0" minHeight="10.0" prefHeight="173.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="263.0" minHeight="10.0" prefHeight="238.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="301.0" minHeight="10.0" prefHeight="264.0000244140625" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="373.59995117187503" minHeight="10.0" prefHeight="133.5999755859375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="263.0" minHeight="10.0" prefHeight="132.80002441406248" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="FORUM SCREEN" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="FORUM" GridPane.columnSpan="2" GridPane.halignment="CENTER">
                     <font>
                         <Font name="Bodoni MT Black Italic" size="22.0" />
                     </font>
@@ -33,7 +35,17 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
             </ListView>
-            <Text fx:id="titleText" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Post" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Text fx:id="titleText" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Post" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="23.0" />
+               </font></Text>
+            <Label text="Posts" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets right="100.0" />
+               </GridPane.margin>
+            </Label>
+            <Text fx:id="topicText" strokeType="OUTSIDE" strokeWidth="0.0" text="No Post Selected" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Text fx:id="contentText" strokeType="OUTSIDE" strokeWidth="0.0" text="No Post Selected" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
         </GridPane>
     </children>

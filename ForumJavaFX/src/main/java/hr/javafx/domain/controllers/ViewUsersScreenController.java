@@ -11,7 +11,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ViewUsersScreenController {
@@ -44,7 +43,7 @@ public class ViewUsersScreenController {
         userPassTableColumn.setCellValueFactory(
                 new Callback<TableColumn.CellDataFeatures<User,String>, ObservableValue<String>>() {
                     public ObservableValue<String> call(TableColumn.CellDataFeatures<User, String> param) {
-                        return new ReadOnlyStringWrapper(param.getValue().getPassword());
+                        return new ReadOnlyStringWrapper(param.getValue().getPasswordHash());
                     }
                 });
         userRoleTableColumn.setCellValueFactory(

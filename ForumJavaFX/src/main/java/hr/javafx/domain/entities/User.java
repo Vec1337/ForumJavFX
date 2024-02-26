@@ -6,13 +6,13 @@ public class User {
 
     private Integer userID;
     private String username;
-    private String password;
+    private String passwordHash;
     private UserRole role;
 
-    public User(Integer userID, String username, String password, UserRole role) {
+    public User(Integer userID, String username, String passwordHash, UserRole role) {
         this.userID = userID;
         this.username = username;
-        this.password = password;
+        this.passwordHash = passwordHash;
         this.role = role;
     }
 
@@ -32,12 +32,12 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public UserRole getRole() {

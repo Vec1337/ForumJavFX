@@ -13,9 +13,9 @@ public class ForumApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         mainStage = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(ForumApplication.class.getResource("firstScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ForumApplication.class.getResource("loginScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("firstScreen!");
+        stage.setTitle("Login Screen!");
         stage.setScene(scene);
         stage.show();
     }

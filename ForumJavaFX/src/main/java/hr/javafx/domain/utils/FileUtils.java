@@ -34,18 +34,17 @@ public class FileUtils {
 
                 Integer id = Integer.parseInt(line);
                 String username = reader.readLine();
-                String password = reader.readLine();
+                String passwordHash = reader.readLine();
                 String userRole = reader.readLine();
 
                 UserRole role = UserRole.GUEST;
 
-                if(userRole.toUpperCase() == "ADMIN") {
+                if(userRole.equalsIgnoreCase("ADMIN")) {
                     role = UserRole.ADMIN;
-                } else if(userRole.toUpperCase() == "GUEST") {
-                    role = UserRole.GUEST;
                 }
 
-                Optional<User> newUserOptional = Optional.of(new User(id, username, password, role));
+
+                Optional<User> newUserOptional = Optional.of(new User(id, username, passwordHash, role));
 
                 if(newUserOptional.isPresent()) {
                     User newUser = newUserOptional.get();
@@ -78,7 +77,7 @@ public class FileUtils {
             for(User user : userList) {
                 pw.println(user.getUserID());
                 pw.println(user.getUsername());
-                pw.println(user.getPassword());
+                pw.println(user.getPasswordHash());
                 pw.println(user.getRole().toString());
             }
         }

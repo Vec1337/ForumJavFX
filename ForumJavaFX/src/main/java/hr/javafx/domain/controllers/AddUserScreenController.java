@@ -2,12 +2,14 @@ package hr.javafx.domain.controllers;
 
 import hr.javafx.domain.entities.User;
 import hr.javafx.domain.enums.UserRole;
+import hr.javafx.domain.hashing.Encryptor;
 import hr.javafx.domain.utils.FileUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class AddUserScreenController {
@@ -29,6 +31,13 @@ public class AddUserScreenController {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
 
+        String passwordHash = null;
+        try {
+            passwordHash = Encryptor.encryptString(password);
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println(e);
+        }
+
         String roleString = userRoleComboBox.getValue();
 
         //GUEST DEFAULT
@@ -38,7 +47,7 @@ public class AddUserScreenController {
             role = UserRole.ADMIN;
         }
 
-        User newUser = new User(id, username, password, role);
+        User newUser = new User(id, username, passwordHash, role);
 
         try {
 
