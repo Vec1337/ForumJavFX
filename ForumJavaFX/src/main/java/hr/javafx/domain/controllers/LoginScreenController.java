@@ -2,6 +2,7 @@ package hr.javafx.domain.controllers;
 
 import hr.javafx.domain.ForumApplication;
 import hr.javafx.domain.entities.User;
+import hr.javafx.domain.enums.UserRole;
 import hr.javafx.domain.hashing.Encryptor;
 import hr.javafx.domain.utils.FileUtils;
 import javafx.event.ActionEvent;
@@ -17,7 +18,11 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+
+
 public class LoginScreenController {
+
+    public static UserRole loggedUserRole;
 
     @FXML
     private TextField usernameTextField;
@@ -61,8 +66,10 @@ public class LoginScreenController {
                 if(passwordHash.equals(user.getPasswordHash())) {
                     if(user.getRole().toString().equalsIgnoreCase("ADMIN")) {
                         showAdminScreen();
+                        loggedUserRole = UserRole.ADMIN;
                     } else {
                         showForumScreen();
+                        loggedUserRole = UserRole.GUEST;
                     }
                 }
             }

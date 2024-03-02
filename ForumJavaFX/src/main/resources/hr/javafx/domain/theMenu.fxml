@@ -26,6 +26,9 @@
                 <items>
                     <MenuItem mnemonicParsing="false" onAction="#showAddUserScreen" text="Add User" />
                 </items>
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showEditUserScreen" text="Edit User" />
+                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Topics">
                 <items>
@@ -33,6 +36,9 @@
                 </items>
                 <items>
                     <MenuItem mnemonicParsing="false" onAction="#showAddTopicScreen" text="Add Topic" />
+                </items>
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showEditTopicScreen" text="Edit Topic" />
                 </items>
             </Menu>
          <Menu mnemonicParsing="false" text="Log out">
