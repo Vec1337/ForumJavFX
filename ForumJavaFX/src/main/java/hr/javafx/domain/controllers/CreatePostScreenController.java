@@ -1,6 +1,6 @@
 package hr.javafx.domain.controllers;
 
-import hr.javafx.domain.entities.Post;
+import hr.javafx.domain.records.Post;
 import hr.javafx.domain.entities.Topic;
 import hr.javafx.domain.utils.FileUtils;
 import javafx.fxml.FXML;
@@ -51,6 +51,8 @@ public class CreatePostScreenController {
             }
 
             Post post = new Post(topic, title, content);
+            //Post post = new Post.Builder(title).content(content).topic(topic).build();
+
 
             List<Post> postList = FileUtils.readPostFromFile();
             postList.add(post);

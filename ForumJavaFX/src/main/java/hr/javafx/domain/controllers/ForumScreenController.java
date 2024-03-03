@@ -1,6 +1,6 @@
 package hr.javafx.domain.controllers;
 
-import hr.javafx.domain.entities.Post;
+import hr.javafx.domain.records.Post;
 import hr.javafx.domain.utils.FileUtils;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -28,7 +28,7 @@ public class ForumScreenController {
         List<Post> postList = FileUtils.readPostFromFile();
 
         for(Post p : postList) {
-            String str = p.getTitle() + " : " + p.getTopic().getName();
+            String str = p.title() + " : " + p.topic().getName();
             postsListView.getItems().add(str);
         }
 
@@ -39,14 +39,14 @@ public class ForumScreenController {
 
                 Post post = null;
                 for(Post p : postList) {
-                    if(currentPost.contains(p.getTitle())) {
+                    if(currentPost.contains(p.title())) {
                         post = p;
                     }
                 }
 
                 titleText.setText(currentPost);
-                topicText.setText(post.getTopic().getName());
-                contentText.setText(post.getContent());
+                topicText.setText(post.topic().getName());
+                contentText.setText(post.content());
 
             }
         });

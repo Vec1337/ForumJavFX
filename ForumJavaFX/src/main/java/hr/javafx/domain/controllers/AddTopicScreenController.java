@@ -29,7 +29,8 @@ public class AddTopicScreenController {
         String description = descriptionTextField.getText();
 
 
-        Topic newTopic = new Topic(name, description);
+        //Topic newTopic = new Topic(name, description);
+        Topic newTopic = new Topic.Builder(name).withDescription(description).build();
 
         try {
 

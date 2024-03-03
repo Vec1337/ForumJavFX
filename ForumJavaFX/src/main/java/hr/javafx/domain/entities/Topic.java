@@ -5,10 +5,42 @@ public  class Topic {
     private String name;
     private String description;
 
+    /*
     public Topic(String name, String description) {
         this.name = name;
         this.description = description;
     }
+
+     */
+
+    public static class Builder {
+        private String name;
+        private String description;
+
+        public Builder(String name) {
+            this.name = name;
+        }
+
+        public Builder withDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Topic build() {
+            Topic topic = new Topic();
+
+            topic.name = this.name;
+            topic.description = this.description;
+
+            return topic;
+        }
+    }
+
+    private Topic() {
+
+    }
+
+
 
     public String getName() {
         return name;

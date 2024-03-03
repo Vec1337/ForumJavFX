@@ -1,6 +1,7 @@
 package hr.javafx.domain.utils;
 
-import hr.javafx.domain.entities.Post;
+
+import hr.javafx.domain.records.Post;
 import hr.javafx.domain.entities.Topic;
 import hr.javafx.domain.entities.User;
 import hr.javafx.domain.enums.UserRole;
@@ -27,6 +28,7 @@ public class FileUtils {
 
 
         List<User> users = new ArrayList<>();
+
 
         try (BufferedReader reader = new BufferedReader(new FileReader(USERS_TEXT_FILE_NAME))) {
             String line;
@@ -64,7 +66,7 @@ public class FileUtils {
     public static Integer getNextUserId() {
         List<User> userList = readUsersFromFile();
 
-        Integer id = userList.stream().map(user -> user.getUserID()).max((u1, u2) -> u1.compareTo(u2)).get();
+        Integer id = userList.stream().map(user -> user.getId()).max((u1, u2) -> u1.compareTo(u2)).get();
 
         return id+1;
     }
@@ -75,7 +77,7 @@ public class FileUtils {
         try(PrintWriter pw = new PrintWriter(userFile)) {
 
             for(User user : userList) {
-                pw.println(user.getUserID());
+                pw.println(user.getId());
                 pw.println(user.getUsername());
                 pw.println(user.getPasswordHash());
                 pw.println(user.getRole().toString());
@@ -103,7 +105,7 @@ public class FileUtils {
                 String name = line;
                 String description = reader.readLine();
 
-                Optional<Topic> newTopicOptional = Optional.of(new Topic(name, description));
+                Optional<Topic> newTopicOptional = Optional.of(new Topic.Builder(name).withDescription(description).build());
 
                 if(newTopicOptional.isPresent()) {
                     Topic newTopic = newTopicOptional.get();
@@ -192,9 +194,9 @@ public class FileUtils {
         try(PrintWriter pw = new PrintWriter(userFile)) {
 
             for(Post post : postList) {
-                pw.println(post.getTopic().getName());
-                pw.println(post.getTitle());
-                pw.println(post.getContent());
+                pw.println(post.topic().getName());
+                pw.println(post.title());
+                pw.println(post.content());
 
             }
         }

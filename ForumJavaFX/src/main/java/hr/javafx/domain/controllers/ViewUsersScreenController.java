@@ -47,7 +47,7 @@ public class ViewUsersScreenController {
         userIdTableColumn.setCellValueFactory(
                 new Callback<TableColumn.CellDataFeatures<User,String>, ObservableValue<String>>() {
                     public ObservableValue<String> call(TableColumn.CellDataFeatures<User, String> param) {
-                        return new ReadOnlyStringWrapper(param.getValue().getUserID().toString());
+                        return new ReadOnlyStringWrapper(param.getValue().getId().toString());
                     }
                 });
         userNameTableColumn.setCellValueFactory(

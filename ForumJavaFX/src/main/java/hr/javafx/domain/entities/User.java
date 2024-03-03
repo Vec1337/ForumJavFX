@@ -2,27 +2,19 @@ package hr.javafx.domain.entities;
 
 import hr.javafx.domain.enums.UserRole;
 
-public class User {
+public class User extends Entity{
 
-    private Integer userID;
     private String username;
     private String passwordHash;
     private UserRole role;
 
     public User(Integer userID, String username, String passwordHash, UserRole role) {
-        this.userID = userID;
+        super(userID);
         this.username = username;
         this.passwordHash = passwordHash;
         this.role = role;
     }
 
-    public Integer getUserID() {
-        return userID;
-    }
-
-    public void setUserID(Integer userID) {
-        this.userID = userID;
-    }
 
     public String getUsername() {
         return username;
