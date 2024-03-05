@@ -1,5 +1,6 @@
 package hr.javafx.domain.controllers;
 
+import hr.javafx.domain.exceptions.RequiredFieldsNotEnteredException;
 import hr.javafx.domain.records.Post;
 import hr.javafx.domain.entities.Topic;
 import hr.javafx.domain.utils.FileUtils;
@@ -8,11 +9,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.List;
 
 public class CreatePostScreenController {
+
+    private static final Logger logger = LoggerFactory.getLogger(CreatePostScreenController.class);
+
     @FXML
     private ComboBox<String> topicComboBox;
     @FXML
@@ -40,7 +46,7 @@ public class CreatePostScreenController {
 
         try {
             if(title.isEmpty() || content.isEmpty() || topicString.isEmpty()) {
-                throw new Exception();
+                throw new RequiredFieldsNotEnteredException();
             }
 
 
@@ -65,8 +71,8 @@ public class CreatePostScreenController {
 
             alert.showAndWait();
 
-        } catch (Exception e) {
-
+        } catch (RequiredFieldsNotEnteredException e) {
+            logger.error(e.getMessage());
             //System.out.println(topic.getName());
             System.out.println(title);
             System.out.println(content);

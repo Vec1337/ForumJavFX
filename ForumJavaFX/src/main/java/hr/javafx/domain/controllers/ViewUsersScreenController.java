@@ -1,7 +1,7 @@
 package hr.javafx.domain.controllers;
 
+import hr.javafx.domain.entities.Generic1;
 import hr.javafx.domain.entities.User;
-import hr.javafx.domain.enums.UserRole;
 import hr.javafx.domain.utils.FileUtils;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ObservableValue;
@@ -102,6 +102,10 @@ public class ViewUsersScreenController {
             ObservableList observableUserList = FXCollections.observableList(userList);
             usersTableView.setItems(observableUserList);
         }
+
+        Generic1<User> userGeneric1 = new Generic1<>(userList.get(0));
+
+        System.out.println(userGeneric1);
 
     }
 

@@ -2,13 +2,18 @@ package hr.javafx.domain.controllers;
 
 import hr.javafx.domain.ForumApplication;
 import hr.javafx.domain.enums.UserRole;
+import hr.javafx.domain.utils.FileUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 public class TheMenuController {
+
+    private static final Logger logger = LoggerFactory.getLogger(TheMenuController.class);
 
     public void showAddUserScreen() {
         FXMLLoader fxmlLoader = new FXMLLoader(ForumApplication.class.getResource("addUserScreen.fxml"));
@@ -18,6 +23,7 @@ public class TheMenuController {
             ForumApplication.getMainStage().setScene(scene);
             ForumApplication.getMainStage().show();
         } catch (IOException e) {
+            logger.error(e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -30,6 +36,7 @@ public class TheMenuController {
             ForumApplication.getMainStage().setScene(scene);
             ForumApplication.getMainStage().show();
         } catch (IOException e) {
+            logger.error(e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -42,6 +49,7 @@ public class TheMenuController {
             ForumApplication.getMainStage().setScene(scene);
             ForumApplication.getMainStage().show();
         } catch (IOException e) {
+            logger.error(e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -54,6 +62,7 @@ public class TheMenuController {
             ForumApplication.getMainStage().setScene(scene);
             ForumApplication.getMainStage().show();
         } catch (IOException e) {
+            logger.error(e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -66,6 +75,7 @@ public class TheMenuController {
             ForumApplication.getMainStage().setScene(scene);
             ForumApplication.getMainStage().show();
         } catch (IOException e) {
+            logger.error(e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -79,6 +89,7 @@ public class TheMenuController {
             ForumApplication.getMainStage().setScene(scene);
             ForumApplication.getMainStage().show();
         } catch (IOException e) {
+            logger.error(e.getMessage());
             throw new RuntimeException(e);
         }
 
@@ -91,6 +102,7 @@ public class TheMenuController {
             ForumApplication.getMainStage().setScene(scene);
             ForumApplication.getMainStage().show();
         } catch (IOException e) {
+            logger.error(e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -106,6 +118,7 @@ public class TheMenuController {
                 ForumApplication.getMainStage().setScene(scene);
                 ForumApplication.getMainStage().show();
             } catch (IOException e) {
+                logger.error(e.getMessage());
                 throw new RuntimeException(e);
             }
         } else {
@@ -129,6 +142,7 @@ public class TheMenuController {
                 ForumApplication.getMainStage().setScene(scene);
                 ForumApplication.getMainStage().show();
             } catch (IOException e) {
+                logger.error(e.getMessage());
                 throw new RuntimeException(e);
             }
         } else {

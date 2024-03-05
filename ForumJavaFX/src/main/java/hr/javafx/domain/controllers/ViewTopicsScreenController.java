@@ -1,5 +1,6 @@
 package hr.javafx.domain.controllers;
 
+import hr.javafx.domain.entities.Generic2;
 import hr.javafx.domain.entities.Topic;
 import hr.javafx.domain.entities.User;
 import hr.javafx.domain.utils.FileUtils;
@@ -12,7 +13,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ViewTopicsScreenController {
 
@@ -46,6 +49,18 @@ public class ViewTopicsScreenController {
         ObservableList observableUserList = FXCollections.observableList(topicList);
 
         topicTableView.setItems(observableUserList);
+
+        Map<Integer, String> topicMap = new HashMap<>();
+
+        for(int i = 0; i < topicList.size(); i++) {
+            topicMap.put(i, topicList.get(i).getName());
+        }
+
+        Generic2<Integer, String> topicMapGeneric = new Generic2<>(topicMap);
+
+        for(Map.Entry<Integer, String> entry : topicMapGeneric.getMap().entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
     }
 
 }

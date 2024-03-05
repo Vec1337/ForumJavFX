@@ -13,6 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -21,6 +23,8 @@ import java.util.List;
 
 
 public class LoginScreenController {
+
+    private static final Logger logger = LoggerFactory.getLogger(LoginScreenController.class);
 
     public static UserRole loggedUserRole;
 
@@ -37,6 +41,8 @@ public class LoginScreenController {
             checkLogin();
 
         } catch (IOException e) {
+            logger.error(e.getMessage());
+
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error checking login info");
             alert.setHeaderText("Not logged in!");
@@ -87,6 +93,7 @@ public class LoginScreenController {
             ForumApplication.getMainStage().setScene(scene);
             ForumApplication.getMainStage().show();
         } catch (IOException e) {
+            logger.error(e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -99,6 +106,7 @@ public class LoginScreenController {
             ForumApplication.getMainStage().setScene(scene);
             ForumApplication.getMainStage().show();
         } catch (IOException e) {
+            logger.error(e.getMessage());
             throw new RuntimeException(e);
         }
     }

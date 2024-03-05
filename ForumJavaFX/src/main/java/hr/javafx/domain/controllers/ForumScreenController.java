@@ -1,5 +1,6 @@
 package hr.javafx.domain.controllers;
 
+import hr.javafx.domain.ForumApplication;
 import hr.javafx.domain.records.Post;
 import hr.javafx.domain.utils.FileUtils;
 import javafx.beans.value.ChangeListener;
@@ -7,10 +8,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public class ForumScreenController {
+
 
     @FXML
     private ListView<String> postsListView;

@@ -2,6 +2,7 @@ package hr.javafx.domain.controllers;
 
 import hr.javafx.domain.entities.User;
 import hr.javafx.domain.enums.UserRole;
+import hr.javafx.domain.exceptions.RequiredFieldsNotEnteredException;
 import hr.javafx.domain.hashing.Encryptor;
 import hr.javafx.domain.utils.FileUtils;
 import javafx.fxml.FXML;
@@ -9,11 +10,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class AddUserScreenController {
+
+    private static final Logger logger = LoggerFactory.getLogger(AddUserScreenController.class);
+
 
     @FXML
     private TextField usernameTextField;
@@ -36,6 +42,7 @@ public class AddUserScreenController {
         try {
             passwordHash = Encryptor.encryptString(password);
         } catch (NoSuchAlgorithmException e) {
+            logger.error(e.getMessage());
             System.out.println(e);
         }
 
@@ -53,7 +60,7 @@ public class AddUserScreenController {
         try {
 
             if(username.isEmpty() || password.isEmpty()) {
-                throw new Exception();
+                throw new RequiredFieldsNotEnteredException("Required fields are not entered!");
             }
 
             List<User> userList = FileUtils.readUsersFromFile();
@@ -67,7 +74,9 @@ public class AddUserScreenController {
 
             alert.showAndWait();
 
-        } catch (Exception e) {
+        } catch (RequiredFieldsNotEnteredException e) {
+            logger.error(e.getMessage());
+
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error while adding new user!");
             alert.setHeaderText("New user not added!");

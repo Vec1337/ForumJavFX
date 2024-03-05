@@ -1,6 +1,7 @@
 package hr.javafx.domain.utils;
 
 
+import hr.javafx.domain.exceptions.TopicIsNullException;
 import hr.javafx.domain.records.Post;
 import hr.javafx.domain.entities.Topic;
 import hr.javafx.domain.entities.User;
@@ -166,9 +167,9 @@ public class FileUtils {
                     }
                 }
 
-                //MAKE A CUSTOM EXCEPTION
+
                 if(topic == null) {
-                    //throw new Exception();
+                    throw new TopicIsNullException("Topic is null");
                 }
 
                 Optional<Post> newPostOptional = Optional.of(new Post(topic, title, content));
@@ -183,6 +184,9 @@ public class FileUtils {
             String message = "Error while reading posts from a file.";
             System.out.println(message);
             logger.error(message, e);
+        }
+        catch (TopicIsNullException e) {
+            logger.error(e.getMessage());
         }
 
         return posts;
