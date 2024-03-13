@@ -11,13 +11,22 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.util.Callback;
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ViewTopicsScreenController {
+
+    @FXML
+    private TextField nameTextField;
+    @FXML
+    private TextField descriptionTextField;
 
     @FXML
     private TableView<User> topicTableView;
@@ -46,9 +55,37 @@ public class ViewTopicsScreenController {
     public void topicSearch() {
         List<Topic> topicList = FileUtils.readTopicsFromFile();
 
-        ObservableList observableUserList = FXCollections.observableList(topicList);
 
-        topicTableView.setItems(observableUserList);
+        Optional<String> nameOptional = Optional.ofNullable(nameTextField.getText());
+        Optional<String> descriptionOptional = Optional.ofNullable(descriptionTextField.getText());
+
+        if(nameOptional.isPresent() && descriptionOptional.isPresent()) {
+
+            List<Topic> filteredTopicList = topicList.stream().filter( t -> t.getName().contains(nameOptional.get()) && t.getDescription().contains(descriptionOptional.get())).collect(Collectors.toList());
+
+            ObservableList observableUserList = FXCollections.observableList(filteredTopicList);
+            topicTableView.setItems(observableUserList);
+
+        } else if(nameOptional.isPresent()) {
+
+            List<Topic> filteredTopicList = topicList.stream().filter( t -> t.getName().contains(nameOptional.get())).collect(Collectors.toList());
+
+            ObservableList observableUserList = FXCollections.observableList(filteredTopicList);
+            topicTableView.setItems(observableUserList);
+
+        } else if(descriptionOptional.isPresent()) {
+
+            List<Topic> filteredTopicList = topicList.stream().filter( t -> t.getDescription().contains(descriptionOptional.get())).collect(Collectors.toList());
+
+            ObservableList observableUserList = FXCollections.observableList(filteredTopicList);
+            topicTableView.setItems(observableUserList);
+
+        }
+        else {
+            ObservableList observableUserList = FXCollections.observableList(topicList);
+            topicTableView.setItems(observableUserList);
+        }
+
 
         Map<Integer, String> topicMap = new HashMap<>();
 

@@ -1,12 +1,14 @@
 package hr.javafx.domain.controllers;
 
 import hr.javafx.domain.ForumApplication;
-import hr.javafx.domain.records.Post;
+import hr.javafx.domain.entities.Post;
 import hr.javafx.domain.utils.FileUtils;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,16 +25,21 @@ public class ForumScreenController {
     @FXML
     private Text topicText;
     @FXML
-    private Text contentText;
+    private Label contentText;
+    @FXML
+    private ScrollPane scrollPane;
 
     String currentPost;
 
     public void initialize() {
 
+        contentText.setWrapText(true);
+        scrollPane.setFitToWidth(true);
+
         List<Post> postList = FileUtils.readPostFromFile();
 
         for(Post p : postList) {
-            String str = p.title() + " : " + p.topic().getName();
+            String str = p.getTitle();
             postsListView.getItems().add(str);
         }
 
@@ -43,14 +50,14 @@ public class ForumScreenController {
 
                 Post post = null;
                 for(Post p : postList) {
-                    if(currentPost.contains(p.title())) {
+                    if(currentPost.contains(p.getTitle())) {
                         post = p;
                     }
                 }
 
                 titleText.setText(currentPost);
-                topicText.setText(post.topic().getName());
-                contentText.setText(post.content());
+                topicText.setText(post.getTopic().getName());
+                contentText.setText(post.getContent());
 
             }
         });

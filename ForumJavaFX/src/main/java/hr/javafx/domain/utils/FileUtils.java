@@ -1,8 +1,9 @@
 package hr.javafx.domain.utils;
 
 
+import hr.javafx.domain.entities.Change;
 import hr.javafx.domain.exceptions.TopicIsNullException;
-import hr.javafx.domain.records.Post;
+import hr.javafx.domain.entities.Post;
 import hr.javafx.domain.entities.Topic;
 import hr.javafx.domain.entities.User;
 import hr.javafx.domain.enums.UserRole;
@@ -22,6 +23,7 @@ public class FileUtils {
     private static String USERS_TEXT_FILE_NAME = "dat/users.txt";
     private static String TOPICS_TEXT_FILE_NAME = "dat/topics.txt";
     private static String POSTS_TEXT_FILE_NAME = "dat/posts.txt";
+    private static String CHANGES_TEXT_FILE_NAME = "dat/changes.bin";
 
 
     //User
@@ -198,9 +200,9 @@ public class FileUtils {
         try(PrintWriter pw = new PrintWriter(userFile)) {
 
             for(Post post : postList) {
-                pw.println(post.topic().getName());
-                pw.println(post.title());
-                pw.println(post.content());
+                pw.println(post.getTopic().getName());
+                pw.println(post.getTitle());
+                pw.println(post.getContent());
 
             }
         }
@@ -211,4 +213,51 @@ public class FileUtils {
             logger.error(message, e);
         }
     }
+
+    public static void serializeChanges(List<Change> changeList) throws FileNotFoundException {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(CHANGES_TEXT_FILE_NAME))) {
+            outputStream.writeObject(changeList);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void serializeChange(Change change) throws FileNotFoundException {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(CHANGES_TEXT_FILE_NAME, true))) {
+            outputStream.writeObject(change);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static List<Change> deserializeChanges() throws FileNotFoundException {
+        List<Change> changes = new ArrayList<>();
+
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(CHANGES_TEXT_FILE_NAME))) {
+            changes = (List<Change>) inputStream.readObject();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        return changes;
+    }
+
+    public static List<Change> deserializeChange() throws FileNotFoundException {
+        List<Change> changes = new ArrayList<>();
+
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(CHANGES_TEXT_FILE_NAME))) {
+            Change change = (Change) inputStream.readObject();
+            changes.add(change);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        return changes;
+    }
+
+
 }

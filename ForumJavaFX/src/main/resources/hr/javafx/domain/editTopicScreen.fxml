@@ -17,28 +17,29 @@
         <fx:include source="theMenu.fxml" />
         <GridPane prefHeight="612.0" prefWidth="800.0">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="251.0" minWidth="10.0" prefWidth="235.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="283.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="282.0" minWidth="10.0" prefWidth="222.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="134.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="106.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Topic" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Topic" GridPane.columnSpan="3" GridPane.halignment="CENTER">
                     <font>
                         <Font name="Bodoni MT Black Italic" size="22.0" />
                     </font>
                 </Text>
-                <TextField prefHeight="25.0" prefWidth="274.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <TextField fx:id="descriptionTextField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="212.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <GridPane.margin>
                         <Insets left="10.0" right="20.0" />
                     </GridPane.margin>
                 </TextField>
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <TextField fx:id="nameTextField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <GridPane.margin>
                         <Insets left="10.0" right="20.0" />
                     </GridPane.margin>
@@ -53,8 +54,7 @@
                         <Insets right="20.0" />
                     </GridPane.margin>
                 </Label>
-                <Button mnemonicParsing="false" text="Edit Topic" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <ComboBox fx:id="topicsComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -64,6 +64,9 @@
                   <Insets right="20.0" />
                </GridPane.margin>
             </Label>
+            <Button mnemonicParsing="false" onAction="#changeName" text="Change Name" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#changeDescription" text="Change Description" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#deleteTopic" text="Delete Topic" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
             </children>
         </GridPane>
     </children>

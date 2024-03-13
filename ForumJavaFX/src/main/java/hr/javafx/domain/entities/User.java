@@ -2,11 +2,17 @@ package hr.javafx.domain.entities;
 
 import hr.javafx.domain.enums.UserRole;
 
-public class User extends Entity{
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+public class User extends Entity implements Serializable {
 
     private String username;
     private String passwordHash;
     private UserRole role;
+
 
     public User(Integer userID, String username, String passwordHash, UserRole role) {
         super(userID);
@@ -38,5 +44,14 @@ public class User extends Entity{
 
     public void setRole(UserRole role) {
         this.role = role;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", role=" + role +
+                '}';
     }
 }

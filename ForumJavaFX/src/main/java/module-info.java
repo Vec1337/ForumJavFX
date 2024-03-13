@@ -3,6 +3,7 @@ module com.example.onlineforumjavafx {
     requires javafx.fxml;
     requires org.slf4j;
     requires java.sql;
+    requires java.base;
 
 
     opens hr.javafx.domain to javafx.fxml;

@@ -2,6 +2,8 @@ package hr.javafx.domain.controllers;
 
 import hr.javafx.domain.entities.Generic1;
 import hr.javafx.domain.entities.User;
+import hr.javafx.domain.enums.UserRole;
+import hr.javafx.domain.records.Admin;
 import hr.javafx.domain.utils.FileUtils;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ObservableValue;
@@ -71,6 +73,8 @@ public class ViewUsersScreenController {
     }
 
     public void userSearch() {
+        Admin admin = new Admin("admin", "admin", UserRole.ADMIN);
+
         List<User> userList = FileUtils.readUsersFromFile();
 
         Optional<String> username = Optional.ofNullable(usernameTextField.getText());

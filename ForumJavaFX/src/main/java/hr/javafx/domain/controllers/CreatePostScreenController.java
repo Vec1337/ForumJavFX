@@ -1,7 +1,7 @@
 package hr.javafx.domain.controllers;
 
 import hr.javafx.domain.exceptions.RequiredFieldsNotEnteredException;
-import hr.javafx.domain.records.Post;
+import hr.javafx.domain.entities.Post;
 import hr.javafx.domain.entities.Topic;
 import hr.javafx.domain.utils.FileUtils;
 import javafx.fxml.FXML;

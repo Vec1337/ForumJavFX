@@ -1,6 +1,8 @@
 package hr.javafx.domain.entities;
 
-public  class Topic {
+import java.io.Serializable;
+
+public  class Topic implements Serializable {
 
     private String name;
     private String description;
@@ -40,7 +42,13 @@ public  class Topic {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "Topic{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 
     public String getName() {
         return name;
