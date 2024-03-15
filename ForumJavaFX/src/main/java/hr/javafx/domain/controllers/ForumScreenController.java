@@ -2,6 +2,10 @@ package hr.javafx.domain.controllers;
 
 import hr.javafx.domain.ForumApplication;
 import hr.javafx.domain.entities.Post;
+import hr.javafx.domain.entities.Topic;
+import hr.javafx.domain.threads.GetPostsThread;
+import hr.javafx.domain.threads.GetTopicsThread;
+import hr.javafx.domain.utils.DatabaseUtils;
 import hr.javafx.domain.utils.FileUtils;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,7 +17,9 @@ import javafx.scene.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ForumScreenController {
 
@@ -36,7 +42,24 @@ public class ForumScreenController {
         contentText.setWrapText(true);
         scrollPane.setFitToWidth(true);
 
-        List<Post> postList = FileUtils.readPostFromFile();
+        //List<Post> postList = FileUtils.readPostFromFile();
+        //Set<Post> postSet = DatabaseUtils.getPosts();
+
+        Set<Post> postSet = new HashSet<>();
+
+        GetPostsThread getPostsThread = new GetPostsThread();
+        Thread thread = new Thread(getPostsThread);
+        thread.start();
+        try {
+            thread.join();
+
+            postSet = getPostsThread.getResult();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        List<Post> postList = postSet.stream().toList();
 
         for(Post p : postList) {
             String str = p.getTitle();

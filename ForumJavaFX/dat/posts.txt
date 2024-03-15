@@ -1,9 +1,9 @@
 Technology
 Title1
 Exploring the depths of artificial intelligence and its impact on society has been an intriguing journey. From revolutionizing industries to shaping everyday interactions, AI's transformative power is undeniable. However, with great innovation comes great responsibility. As we delve deeper into the realms of machine learning and neural networks, ethical considerations become paramount. Ensuring transparency, accountability, and fairness in AI algorithms is crucial for building trust and mitigating biases. Let's navigate this evolving landscape with mindfulness and ethical stewardship, harnessing the potential of AI to create a better future for all.
-fitnes2
+Fitness
 Title2
 Content2
-fitnes2
+Fitness
 FitensPost
 Lorem ipsum

@@ -1,6 +1,6 @@
 package hr.javafx.domain.entities;
 
-public class Generic1<T extends Entity> {
+public final class Generic1<T extends Entity>  {
 
     private T entity;
 

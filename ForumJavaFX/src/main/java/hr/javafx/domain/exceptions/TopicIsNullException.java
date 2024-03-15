@@ -1,6 +1,6 @@
 package hr.javafx.domain.exceptions;
 
-public class TopicIsNullException extends Exception{
+public class TopicIsNullException extends RuntimeException{
     public TopicIsNullException() {
     }
 

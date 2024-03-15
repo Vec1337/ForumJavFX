@@ -68,8 +68,8 @@ public class EditUserScreenController {
 
                     for (User user : userList) {
                         if (user.getUsername().equals(usersComboBox.getValue().getUsername())) {
-                            user.setUsername(newUsername);
                             oldUsername = user.getUsername();
+                            user.setUsername(newUsername);
                         }
                     }
 
@@ -118,6 +118,7 @@ public class EditUserScreenController {
     public void changePassword() {
 
         String newPassword = passwordTexField.getText();
+        String oldPasswordHash = null;
 
         try {
             checkIfUserIsSelected();
@@ -143,12 +144,17 @@ public class EditUserScreenController {
 
                     for (User user : userList) {
                         if (user.getUsername().equals(usersComboBox.getValue().getUsername())) {
+                            oldPasswordHash = user.getPasswordHash();
                             user.setPasswordHash(passwordHash);
                         }
                     }
 
 
                     FileUtils.saveUsersToFile(userList);
+
+                    Change change = new Change("Password", oldPasswordHash, passwordHash, LocalDateTime.now());
+                    FileUtils.serializeChange(change);
+
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("INFO!");
                     alert.setHeaderText("User changed!");
@@ -176,6 +182,8 @@ public class EditUserScreenController {
             alert.setContentText("ERROR");
 
             alert.showAndWait();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -183,6 +191,7 @@ public class EditUserScreenController {
     public void changeRole() {
 
         Optional<UserRole> userRoleOptional = Optional.ofNullable(userRoleComboBox.getValue());
+        UserRole oldUserRole = null;
 
         try {
             checkIfUserIsSelected();
@@ -200,12 +209,17 @@ public class EditUserScreenController {
 
                     for (User user : userList) {
                         if (user.getUsername().equals(usersComboBox.getValue().getUsername())) {
+                            oldUserRole = user.getRole();
                             user.setRole(userRoleOptional.get());
                         }
                     }
 
 
                     FileUtils.saveUsersToFile(userList);
+
+                    Change change = new Change("User Role", oldUserRole.toString(), userRoleOptional.get().toString(), LocalDateTime.now());
+                    FileUtils.serializeChange(change);
+
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("INFO!");
                     alert.setHeaderText("User changed!");
@@ -233,6 +247,8 @@ public class EditUserScreenController {
             alert.setContentText("ERROR");
 
             alert.showAndWait();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 

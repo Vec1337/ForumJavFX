@@ -6,8 +6,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="30.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.domain.controllers.TheMenuController">
-    <MenuBar layoutX="7.0" layoutY="2.0" prefHeight="25.0" prefWidth="309.0">
+<AnchorPane prefHeight="30.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.domain.controllers.TheMenuController">
+    <MenuBar layoutX="7.0" layoutY="2.0" prefHeight="25.0" prefWidth="379.0">
         <menus>
             <Menu mnemonicParsing="false" text="Forum">
                 <items>
@@ -41,11 +41,16 @@
                     <MenuItem mnemonicParsing="false" onAction="#showEditTopicScreen" text="Edit Topic" />
                 </items>
             </Menu>
-         <Menu mnemonicParsing="false" text="Log out">
-           <items>
-             <MenuItem mnemonicParsing="false" onAction="#userLogOut" text="Log out" />
-           </items>
-         </Menu>
+            <Menu mnemonicParsing="false" text="Changes">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showViewChangesScreen" text="View Changes" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Log out">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#userLogOut" text="Log out" />
+            </items>
+            </Menu>
         </menus>
         <padding>
             <Insets left="5.0" right="5.0" />

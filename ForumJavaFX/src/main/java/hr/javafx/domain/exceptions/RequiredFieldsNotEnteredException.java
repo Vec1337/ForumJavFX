@@ -1,6 +1,6 @@
 package hr.javafx.domain.exceptions;
 
-public class RequiredFieldsNotEnteredException extends Exception{
+public class RequiredFieldsNotEnteredException extends RuntimeException{
     public RequiredFieldsNotEnteredException() {
     }
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public  class Topic implements Serializable {
 
+    //private Integer id;
     private String name;
     private String description;
 
@@ -28,6 +29,7 @@ public  class Topic implements Serializable {
             return this;
         }
 
+
         public Topic build() {
             Topic topic = new Topic();
 
@@ -39,7 +41,7 @@ public  class Topic implements Serializable {
     }
 
     private Topic() {
-
+        super();
     }
 
     @Override

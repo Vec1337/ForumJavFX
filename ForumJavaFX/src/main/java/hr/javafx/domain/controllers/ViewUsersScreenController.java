@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -83,21 +84,36 @@ public class ViewUsersScreenController {
 
         if(username.isPresent() && userRole.isPresent()) {
 
-            List<User> filteredUserList = userList.stream().filter(u -> u.getRole().toString().contains(userRole.get()) && u.getUsername().contains(username.get())).collect(Collectors.toList());
+            List<User> filteredUserList = userList.stream().filter(u -> u.getRole().toString().contains(userRole.get()) && u.getUsername().contains(username.get())).sorted(new Comparator<User>() {
+                @Override
+                public int compare(User o1, User o2) {
+                    return o1.getId().compareTo(o2.getId());
+                }
+            }).collect(Collectors.toList());
 
             ObservableList observableUserList = FXCollections.observableList(filteredUserList);
             usersTableView.setItems(observableUserList);
 
         } else if(userRole.isPresent()) {
 
-            List<User> filteredUserList = userList.stream().filter(u -> u.getRole().toString().contains(userRole.get())).collect(Collectors.toList());
+            List<User> filteredUserList = userList.stream().filter(u -> u.getRole().toString().contains(userRole.get())).sorted(new Comparator<User>() {
+                @Override
+                public int compare(User o1, User o2) {
+                    return o1.getId().compareTo(o2.getId());
+                }
+            }).collect(Collectors.toList());
 
             ObservableList observableUserList = FXCollections.observableList(filteredUserList);
             usersTableView.setItems(observableUserList);
 
         } else if(username.isPresent()) {
 
-            List<User> filteredUserList = userList.stream().filter(u -> u.getUsername().contains(username.get())).collect(Collectors.toList());
+            List<User> filteredUserList = userList.stream().filter(u -> u.getUsername().contains(username.get())).sorted(new Comparator<User>() {
+                @Override
+                public int compare(User o1, User o2) {
+                    return o1.getId().compareTo(o2.getId());
+                }
+            }).collect(Collectors.toList());
 
             ObservableList observableUserList = FXCollections.observableList(filteredUserList);
             usersTableView.setItems(observableUserList);

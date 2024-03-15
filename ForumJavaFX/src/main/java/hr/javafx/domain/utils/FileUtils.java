@@ -214,17 +214,16 @@ public class FileUtils {
         }
     }
 
-    public static void serializeChanges(List<Change> changeList) throws FileNotFoundException {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(CHANGES_TEXT_FILE_NAME))) {
-            outputStream.writeObject(changeList);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 
     public static void serializeChange(Change change) throws FileNotFoundException {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(CHANGES_TEXT_FILE_NAME, true))) {
-            outputStream.writeObject(change);
+
+        List<Change> changes = deserializeChanges();
+        //List<Change> changes = new ArrayList<>();
+        changes.add(change);
+
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(CHANGES_TEXT_FILE_NAME))) {
+            outputStream.writeObject(changes);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -244,12 +243,22 @@ public class FileUtils {
         return changes;
     }
 
+
+    /*
     public static List<Change> deserializeChange() throws FileNotFoundException {
         List<Change> changes = new ArrayList<>();
 
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(CHANGES_TEXT_FILE_NAME))) {
-            Change change = (Change) inputStream.readObject();
-            changes.add(change);
+
+
+                try {
+                    Change change = (Change) inputStream.readObject();
+                    changes.add(change);
+                } catch (EOFException e) {
+                    // End of file reached
+
+                }
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -258,6 +267,16 @@ public class FileUtils {
 
         return changes;
     }
+
+    public static void serializeChanges(List<Change> changeList) throws FileNotFoundException {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(CHANGES_TEXT_FILE_NAME))) {
+            outputStream.writeObject(changeList);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+     */
 
 
 }

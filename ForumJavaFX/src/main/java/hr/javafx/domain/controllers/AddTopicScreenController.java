@@ -4,6 +4,7 @@ import hr.javafx.domain.entities.Topic;
 import hr.javafx.domain.entities.User;
 import hr.javafx.domain.enums.UserRole;
 import hr.javafx.domain.exceptions.RequiredFieldsNotEnteredException;
+import hr.javafx.domain.utils.DatabaseUtils;
 import hr.javafx.domain.utils.FileUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -45,7 +46,8 @@ public class AddTopicScreenController {
 
             List<Topic> topicList = FileUtils.readTopicsFromFile();
             topicList.add(newTopic);
-            FileUtils.saveTopicsToFile(topicList);
+            //FileUtils.saveTopicsToFile(topicList);
+            DatabaseUtils.saveTopic(newTopic);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Successfully added new topic!");

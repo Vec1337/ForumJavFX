@@ -155,4 +155,18 @@ public class TheMenuController {
         }
     }
 
+    public void showViewChangesScreen() {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(ForumApplication.class.getResource("viewChangesScreen.fxml"));
+        try {
+            Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+            ForumApplication.getMainStage().setTitle("View Changes");
+            ForumApplication.getMainStage().setScene(scene);
+            ForumApplication.getMainStage().show();
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
 }
