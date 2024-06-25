@@ -44,7 +44,9 @@ public class Main {
             System.out.println("Datum proizvodnje: " + car.getManufacturingDate());
 
             if(car instanceof ElectricCar ec) {
-
+                System.out.println("Kapacitet baterije elektricnog automobila: " + ec.getBattery().capcity());
+            } else if(car instanceof FuelCar fc) {
+                System.out.println("Kapacitet spremnika goriva konvencionalnog automobila: " + fc.getTankCapacity());
             }
         }
 

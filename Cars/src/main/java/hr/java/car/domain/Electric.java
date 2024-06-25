@@ -1,6 +1,6 @@
 package hr.java.car.domain;
 
-public interface Electric {
+public sealed interface Electric permits ElectricCar{
 
     void turnOn();
 

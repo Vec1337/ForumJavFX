@@ -3,7 +3,7 @@ package hr.java.car.domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class ElectricCar extends Car implements Electric{
+public non-sealed class  ElectricCar extends Car implements Electric{
 
     private Battery battery;
     private Boolean turnedOn;
