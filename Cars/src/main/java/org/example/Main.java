@@ -1,33 +1,78 @@
 package org.example;
 
 
+import hr.java.car.comparator.CarPriceComparator;
 import hr.java.car.domain.*;
+import hr.java.car.exception.UserInputException;
+import hr.java.car.generics.Garage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
-    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
+
+        logger.info("Program je pokrenut...");
 
         Scanner inputScanner = new Scanner(System.in);
 
         Car[] cars = getCars(inputScanner);
 
 
-        Car theCheapestCar = determineTheCheapestCar(cars);
+
+        Garage<Car> garage = new Garage();
+
+        garage.setCarsInGarage(Arrays.asList(cars));
+
+
+        List<Car> carsinGarage = garage.getCarsInGarage();
+
+        for(Car car : carsinGarage) {
+            System.out.println(car);
+        }
+
+
+
+        SortedSet<Car> sortedSet = new TreeSet<>(new CarPriceComparator());
+
+        sortedSet.addAll(Arrays.asList(cars));
+
+
+        Map<String, List<Car>> carsByManufacturer = new HashMap<>();
+
+        for(Car car : cars) {
+
+            if (!carsByManufacturer.containsKey(car.getManufacturer())){
+
+                carsByManufacturer.put(car.getManufacturer(), new ArrayList<>());
+
+            }
+
+            carsByManufacturer.get(car.getManufacturer()).add(car);
+        }
+
+        //Car theCheapestCar = determineTheCheapestCar(cars);
+
+
+        Car theCheapestCar = sortCarsByPrice(cars).get(0);
 
         System.out.println("Najjeftiniji automobil je: " + theCheapestCar.getManufacturer() + " " + theCheapestCar.getType() + " = " + theCheapestCar.getPrice() + " EUR");
 
 
         Car theOldestCar = determineTheOldestCar(cars);
 
-        System.out.println("Najstariji automobil je: " + theCheapestCar.getManufacturer() + " " + theCheapestCar.getType() + " = " + theCheapestCar.getPrice() + " EUR, a proizveden je" + theOldestCar.getManufacturer().formatted(DATE_TIME_FORMAT));
+        System.out.println("Najstariji automobil je: " + theCheapestCar.getManufacturer() + " " + theCheapestCar.getType() + " = " + theCheapestCar.getPrice() + " EUR, a proizveden je" + theOldestCar.getManufacturingDate().format(DATE_TIME_FORMAT));
 
 
         Car purchasedCar = purchaseCar(cars, inputScanner);
@@ -50,6 +95,15 @@ public class Main {
             }
         }
 
+        BigDecimal averagePrice = average(carsinGarage.parallelStream().map(c -> c.getPrice()).collect(Collectors.toList()), RoundingMode.HALF_UP);
+
+    }
+
+    public static BigDecimal average(List<BigDecimal> bigDecimals, RoundingMode roundingmode) {
+        BigDecimal sum = bigDecimals.stream()
+                .map(Objects::requireNonNull)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        return sum.divide(new BigDecimal(bigDecimals.size()), roundingmode);
     }
 
     private static Car purchaseCar(Car[] cars, Scanner inputScanner) {
@@ -99,10 +153,34 @@ public class Main {
         return theOldestCar;
     }
 
+    /**
+     * Sluzi za unos podataka o automobilima
+     *
+     * @param inputScanner objekt koji se koristi    za unos podataka
+     * @return popunjeno polje objekata klase automobil
+     */
     private static Car[] getCars(Scanner inputScanner) {
-        System.out.print("Unesi broj automobila koje zelite unijeti: ");
-        Integer numberOfCars = inputScanner.nextInt();
-        inputScanner.nextLine();
+
+
+        Boolean error;
+        Integer numberOfCars = -1;
+
+        do {
+
+            error = false;
+
+            System.out.print("Unesi broj automobila koje zelite unijeti: ");
+            try {
+
+                numberOfCars = inputScanner.nextInt();
+
+            } catch (InputMismatchException e) {
+                logger.error("Neispravan unos broja automobila!");
+                error = true;
+            }
+
+            inputScanner.nextLine();
+        } while(error);
 
         Car[] cars = new Car[numberOfCars];
 
@@ -140,6 +218,7 @@ public class Main {
                 System.out.print("Unesite kapacitet spremnika goriva: ");
                 Integer fuelTankCapacity = inputScanner.nextInt();
 
+
                 newCar = new FuelCar(fuelTankCapacity, carManufacturer, carType, carPrice, manufacturingDate);
 
             } else {
@@ -151,7 +230,7 @@ public class Main {
                 newCar = new ElectricCar(electricCarBattery, carManufacturer, carType, carPrice, manufacturingDate);
             }
 
-
+            inputScanner.nextLine();
 
             duplicateCars = checkDuplicateCars(newCar, cars);
 
@@ -172,5 +251,21 @@ public class Main {
         }
 
         return false;
+    }
+
+    private static List<Car> sortCarsByPrice(Car[] cars) {
+        List<Car> carList = Arrays.asList(cars);
+
+        Collections.sort(carList, new CarPriceComparator());
+
+        return carList;
+    }
+
+    private static List<Car> sortCarByPriceLambda(Car[] cars) {
+        List<Car> carList = Arrays.asList(cars);
+
+        List<Car> sortedList = carList.stream().sorted((c1, c2) -> c2.getPrice().compareTo(c1.getPrice())).collect(Collectors.toList());
+
+        return sortedList;
     }
 }
