@@ -1,9 +1,10 @@
 package hr.java.car.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public non-sealed class  ElectricCar extends Car implements Electric{
+public non-sealed class  ElectricCar extends Car implements Electric, Serializable {
 
     private Battery battery;
     private Boolean turnedOn;

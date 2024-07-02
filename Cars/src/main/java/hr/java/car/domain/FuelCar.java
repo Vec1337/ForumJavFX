@@ -1,9 +1,10 @@
 package hr.java.car.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class FuelCar extends Car{
+public class FuelCar extends Car implements Serializable {
 
     private Integer tankCapacity;
 

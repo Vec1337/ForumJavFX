@@ -1,6 +1,7 @@
 package org.example;
 
 
+import hr.java.car.FileUtils;
 import hr.java.car.comparator.CarPriceComparator;
 import hr.java.car.domain.*;
 import hr.java.car.exception.UserInputException;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 
 public class Main {
 
-    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+    public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
@@ -27,13 +28,14 @@ public class Main {
 
         Scanner inputScanner = new Scanner(System.in);
 
-        Car[] cars = getCars(inputScanner);
+        //Car[] cars = getCars(inputScanner);
 
-
+        List<Car> cars = FileUtils.getCarsFromFile();
+        FileUtils.serializeCars(cars);
 
         Garage<Car> garage = new Garage();
 
-        garage.setCarsInGarage(Arrays.asList(cars));
+        garage.setCarsInGarage(cars);
 
 
         List<Car> carsinGarage = garage.getCarsInGarage();
@@ -46,7 +48,7 @@ public class Main {
 
         SortedSet<Car> sortedSet = new TreeSet<>(new CarPriceComparator());
 
-        sortedSet.addAll(Arrays.asList(cars));
+        sortedSet.addAll(cars);
 
 
         Map<String, List<Car>> carsByManufacturer = new HashMap<>();
@@ -106,27 +108,27 @@ public class Main {
         return sum.divide(new BigDecimal(bigDecimals.size()), roundingmode);
     }
 
-    private static Car purchaseCar(Car[] cars, Scanner inputScanner) {
+    private static Car purchaseCar(List<Car> cars, Scanner inputScanner) {
         Integer chosenCarIndex = null;
 
         do {
 
             System.out.println("Unesite automobile koji zelite kupiti: ");
 
-            for (int i = 1; i <= cars.length; i++) {
-                System.out.println(i + ") Manufacturer: " + cars[i-1].getManufacturer() + " Type: " + cars[i-1].getType() + " Price: " + cars[i-1].getPrice() + " Date: " + cars[i-1].getManufacturingDate().format(DATE_TIME_FORMAT));
+            for (int i = 1; i <= cars.size(); i++) {
+                System.out.println(i + ") Manufacturer: " + cars.get(i-1).getManufacturer() + " Type: " +cars.get(i-1).getType() + " Price: " + cars.get(i-1).getPrice() + " Date: " + cars.get(i-1).getManufacturingDate().format(DATE_TIME_FORMAT));
             }
 
-            System.out.print("Odabit >> ");
+            System.out.print("Odabir >> ");
             chosenCarIndex = inputScanner.nextInt();
 
-            if(chosenCarIndex < 1 || chosenCarIndex > cars.length) {
+            if(chosenCarIndex < 1 || chosenCarIndex > cars.size()) {
                 System.out.println("Neispravan unos broja automobila, molimo pokusajte ponovno!");
             }
 
-        } while(chosenCarIndex < 1 || chosenCarIndex > cars.length);
+        } while(chosenCarIndex < 1 || chosenCarIndex > cars.size());
 
-        Car purchasedCar = cars[chosenCarIndex-1];
+        Car purchasedCar = cars.get(chosenCarIndex-1);
         return purchasedCar;
     }
 
@@ -141,12 +143,12 @@ public class Main {
         return theCheapestCar;
     }
 
-    private static Car determineTheOldestCar(Car[] cars) {
-        Car theOldestCar = cars[0];
+    private static Car determineTheOldestCar(List<Car> cars) {
+        Car theOldestCar = cars.get(0);
 
-        for(int i = 1; i < cars.length; i++) {
-            if(cars[i].getManufacturingDate().isBefore(theOldestCar.getManufacturingDate())) {
-                theOldestCar = cars[i];
+        for(int i = 1; i < cars.size(); i++) {
+            if(cars.get(i).getManufacturingDate().isBefore(theOldestCar.getManufacturingDate())) {
+                theOldestCar = cars.get(i);
             }
         }
 
@@ -253,12 +255,11 @@ public class Main {
         return false;
     }
 
-    private static List<Car> sortCarsByPrice(Car[] cars) {
-        List<Car> carList = Arrays.asList(cars);
+    private static List<Car> sortCarsByPrice(List<Car> cars) {
 
-        Collections.sort(carList, new CarPriceComparator());
+        Collections.sort(cars, new CarPriceComparator());
 
-        return carList;
+        return cars;
     }
 
     private static List<Car> sortCarByPriceLambda(Car[] cars) {

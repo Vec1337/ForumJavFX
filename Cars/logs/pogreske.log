@@ -10,3 +10,59 @@
 2024-06-29 09:13:49,605 INFO [main] o.e.Main [Main.java:23] Program je pokrenut...
 2024-06-29 09:14:25,142 INFO [main] o.e.Main [Main.java:23] Program je pokrenut...
 2024-06-29 15:03:10,350 INFO [main] o.e.Main [Main.java:25] Program je pokrenut...
+2024-07-02 10:16:03,181 INFO [main] o.e.Main [Main.java:26] Program je pokrenut...
+2024-07-02 10:21:31,112 INFO [main] o.e.Main [Main.java:27] Program je pokrenut...
+2024-07-02 10:23:05,902 INFO [main] o.e.Main [Main.java:27] Program je pokrenut...
+2024-07-02 10:26:47,846 INFO [main] o.e.Main [Main.java:27] Program je pokrenut...
+2024-07-02 10:27:01,401 INFO [main] o.e.Main [Main.java:27] Program je pokrenut...
+2024-07-02 10:29:02,287 INFO [main] o.e.Main [Main.java:27] Program je pokrenut...
+2024-07-02 10:33:53,146 INFO [main] o.e.Main [Main.java:27] Program je pokrenut...
+2024-07-02 10:33:53,261 ERROR [main] h.j.c.FileUtils [FileUtils.java:80] Serialization errror!
+java.io.NotSerializableException: hr.java.car.domain.FuelCar
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1200)
+	at java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:358)
+	at java.base/java.util.ArrayList.writeObject(ArrayList.java:948)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1072)
+	at java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1529)
+	at java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1451)
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1194)
+	at java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:358)
+	at hr.java.car.FileUtils.serializeCars(FileUtils.java:77)
+	at org.example.Main.main(Main.java:34)
+2024-07-02 10:35:23,009 INFO [main] o.e.Main [Main.java:27] Program je pokrenut...
+2024-07-02 10:35:23,096 ERROR [main] h.j.c.FileUtils [FileUtils.java:80] Serialization errror!
+java.io.NotSerializableException: hr.java.car.domain.FuelCar
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1200)
+	at java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:358)
+	at java.base/java.util.ArrayList.writeObject(ArrayList.java:948)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1072)
+	at java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1529)
+	at java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1451)
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1194)
+	at java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:358)
+	at hr.java.car.FileUtils.serializeCars(FileUtils.java:77)
+	at org.example.Main.main(Main.java:34)
+2024-07-02 10:36:30,554 INFO [main] o.e.Main [Main.java:27] Program je pokrenut...
+2024-07-02 10:36:30,637 ERROR [main] h.j.c.FileUtils [FileUtils.java:80] Serialization errror!
+java.io.NotSerializableException: hr.java.car.domain.Battery
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1200)
+	at java.base/java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1585)
+	at java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1542)
+	at java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1451)
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1194)
+	at java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:358)
+	at java.base/java.util.ArrayList.writeObject(ArrayList.java:948)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1072)
+	at java.base/java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1529)
+	at java.base/java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1451)
+	at java.base/java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1194)
+	at java.base/java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:358)
+	at hr.java.car.FileUtils.serializeCars(FileUtils.java:77)
+	at org.example.Main.main(Main.java:34)
+2024-07-02 10:36:55,703 INFO [main] o.e.Main [Main.java:27] Program je pokrenut...

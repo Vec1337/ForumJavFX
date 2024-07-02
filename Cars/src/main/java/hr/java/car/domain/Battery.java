@@ -1,6 +1,8 @@
 package hr.java.car.domain;
 
-public record Battery(Integer capcity) {
+import java.io.Serializable;
+
+public record Battery(Integer capcity) implements Serializable {
 
 
 }

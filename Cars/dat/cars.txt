@@ -1,0 +1,18 @@
+Volkswagen
+Passat
+10000
+15.11.2000.
+1
+60
+Volkswagen
+Polo
+5000
+15.11.1999.
+1
+40
+Tesla
+Electric Turbo
+50000
+15.11.2023.
+2
+100

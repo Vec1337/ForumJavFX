@@ -1,11 +1,12 @@
 package hr.java.car.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public abstract class Car {
+public abstract class Car implements Serializable {
 
     public static final Integer CAR_TYPE_CATEGORY_ELECTRIC = 2;
     public static final Integer CAR_TYPE_CATEGORY_FUEL = 1;
